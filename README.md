@@ -1,0 +1,1 @@
+# DocumentDB-patch-auto-notification
