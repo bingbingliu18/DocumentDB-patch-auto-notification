@@ -56,6 +56,113 @@
 **Lambda role:** 
 **lambda-query-maintenance**
 
+**Lambda Timeout:  7 Minutes（Change default timeout:  from 3 seconds to 7 minutes）：**
+
+<img width="422" alt="image" src="https://user-images.githubusercontent.com/50776512/217133071-05cf3be8-4b3b-4aba-a33f-ecbb509c98c3.png">
+
+**Lambda Runtime: Python 3.7**
+
+**Lambda Code:**
+```
+
+import boto3
+
+import json
+
+notification = "This is notification for DocumentDB patch \n"
+
+def query_docdb():
+
+    global notification
+
+    EC2 = boto3.client('ec2')
+
+    regions = EC2.describe_regions()
+
+    for REGION in regions['Regions']:
+
+        docDB = boto3.client('docdb',REGION['RegionName'])
+
+        pma = docDB.describe_pending_maintenance_actions()
+
+        if len(pma['PendingMaintenanceActions']) > 0:
+
+            num = len(pma['PendingMaintenanceActions'])
+
+            for inst in pma['PendingMaintenanceActions']:
+
+                mw_type=inst['PendingMaintenanceActionDetails'][0]['Description']
+
+                if mw_type != 'Bug Fixes':
+
+                    num = num - 1
+
+                    continue
+
+                temp_string = "Region: " + REGION['RegionName'] +  " has docDB cluster needed to be upgrade.\n"
+
+                notification += temp_string
+
+                temp_string = "The Cluster has pending maintenance action: " + inst['ResourceIdentifier'] + "\n"
+
+                notification += temp_string
+
+                cls_identifier=inst['ResourceIdentifier'].split(':')[-1]
+
+                try:
+
+                    cls = docDB.describe_db_clusters(DBClusterIdentifier=cls_identifier)
+
+                except Exception as e:
+
+                        temp_string = "Failed to get cluster information " + cls_identifier + " Exception: " + e + "\n"
+
+                        notification += temp_string
+
+                        continue
+
+                dbclus=cls['DBClusters']
+
+                mw = dbclus[0]['PreferredMaintenanceWindow']
+
+                temp_string = "The Cluster maintenance window UTC time: " + mw + "\n"
+
+                notification += temp_string
+
+            temp_string = "Region: " + REGION['RegionName'] + " has total " + str(num) +  " cluster found.\n"   
+
+            notification += temp_string
+
+        else:
+
+            temp_string = "Region: " + REGION['RegionName'] + " No Cluster found.\n"
+
+            notification += temp_string
+
+def lambda_handler(event, context):
+
+    global notification
+
+    sns_client = boto3.client('sns')
+
+    query_docdb()
+
+    print (notification)
+
+    sns_response = sns_client.publish (
+
+        TargetArn = "arn:aws:sns:us-east-1:02818****:docdb-patch-notification",
+
+        Subject = "DocumentDB Patch Notification",
+
+        Message = json.dumps({'default': notification}),
+
+        MessageStructure = 'json'
+
+     )
+     
+  ``` 
+  **You could copy Lambda Python Code from Deploy Lamda.py**
 ### 三级标题
 #### 四级标题
 ##### 五级标题
