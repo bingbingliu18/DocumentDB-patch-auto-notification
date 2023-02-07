@@ -6,7 +6,26 @@
 ## Create an IAM Policy for Lambda
 **Policy name: query-pending-maintenance**
 
-
+**Policy  Json definition：**
+```
+{
+    "Version": "2012-10-17", 
+    "Statement": [
+        {
+            "Sid": "VisualEditor0", 
+            "Effect": "Allow", 
+            "Action": [
+            "sns:Publish", 
+            "ec2:DescribeRegions", 
+            "rds:DescribeDBInstances", 
+            "rds:DescribePendingMaintenanceActions", 
+            "rds:DescribeDBClusters"
+        ],
+        "Resource": "*"
+        }
+    ]
+}
+```
 ### 三级标题
 #### 四级标题
 ##### 五级标题
