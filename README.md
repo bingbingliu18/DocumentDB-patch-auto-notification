@@ -51,7 +51,8 @@
 
 **Please refer to Lambda Python Code from the file deploy/lamda.py**
 
-**Change the python code：TargetArn = "arn:aws:sns:us-east-1:02818****:docdb-patch-notification" **change Account id to your Account id**
+**Change the python code：TargetArn = "arn:aws:sns:us-east-1:02818***:docdb-patch-notification" 
+**change Account id to your Account id)**
 
 ## Create event bridge
 1. **Create event rule:**
