@@ -54,9 +54,29 @@
 **Change the python code：TargetArn = "arn:aws:sns:us-east-1:02818****:docdb-patch-notification" **change Account id to your Account id**
 
 ## Create event bridge
+1. **Create event rule:**
 
+**Rule_name: docdb-patch-notification_rule**
 
-### 三级标题
-#### 四级标题
-##### 五级标题
-###### 六级标题
+**Rule type: schedule**
+
+<img width="422" alt="image" src="https://user-images.githubusercontent.com/50776512/217153322-31abafcc-c40f-4904-b817-87fb1a614e77.png">
+
+2.	**Create event schedule:**
+
+**Schedule_name: docdb-patch-notification-schedule (executed once a day)**
+
+<img width="422" alt="image" src="https://user-images.githubusercontent.com/50776512/217153808-26803180-5ce1-47cf-9622-6ed9aafe7247.png">
+
+**Schedule Targe: Select the created Lambda function (invoke)**
+
+<img width="422" alt="image" src="https://user-images.githubusercontent.com/50776512/217154493-909176a9-6bf0-4cc5-836f-4271af5aabd0.png">
+
+**Create successfully：**
+
+**Once create successfully, the lambda function would be executed, then executed once a day**
+
+## Email Notification Example：
+
+<img width="422" alt="image" src="https://user-images.githubusercontent.com/50776512/217155276-19802738-c6a1-40cb-af8b-f755ff2d8539.png">
+
