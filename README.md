@@ -1,4 +1,5 @@
 # DocumentDB Patch Auto Notification
+**Automatically query available DocumentDB Patch**
 ## Architecture Diagram：
 
 <img width="422" alt="image" src="https://user-images.githubusercontent.com/50776512/216918607-dc639069-21c5-488e-b647-4c8d6e2bf31a.png">
@@ -45,7 +46,8 @@
 
 3. **Confirm subscription in the email：**
 
-<img width="422" alt="image" src="https://user-images.githubusercontent.com/50776512/217128118-1e570ab8-5310-42ca-8130-21a07a4c30aa.png">
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/50776512/217141783-97d1714f-8d86-4480-8bb4-1133065893c6.png">
+
 
 ## Create Lambda
 **Lambda Configuration：**
