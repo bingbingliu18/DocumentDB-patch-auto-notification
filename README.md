@@ -26,6 +26,12 @@
     ]
 }
 ```
+## Create Role for Lambda
+**Role Name: lambda-query-maintenance**
+
+**Policy: query-pending-maintenance**
+## Configure SNS service
+
 ### 三级标题
 #### 四级标题
 ##### 五级标题
