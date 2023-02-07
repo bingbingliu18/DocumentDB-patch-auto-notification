@@ -8,25 +8,8 @@
 **Policy name: query-pending-maintenance**
 
 **Policy  Json definition：**
-```
-{
-    "Version": "2012-10-17", 
-    "Statement": [
-        {
-            "Sid": "VisualEditor0", 
-            "Effect": "Allow", 
-            "Action": [
-            "sns:Publish", 
-            "ec2:DescribeRegions", 
-            "rds:DescribeDBInstances", 
-            "rds:DescribePendingMaintenanceActions", 
-            "rds:DescribeDBClusters"
-        ],
-        "Resource": "*"
-        }
-    ]
-}
-```
+
+**Please refer to Policy Json defefinition from the file deploy/policy.json**
 ## Create Role for Lambda
 **Role Name: lambda-query-maintenance**
 
@@ -67,6 +50,12 @@
 **Lambda Code:**
 
 **Please refer to Lambda Python Code from the file deploy/lamda.py**
+
+**Change the python code：TargetArn = "arn:aws:sns:us-east-1:02818****:docdb-patch-notification" **change Account id to your Account id**
+
+## Create event bridge
+
+
 ### 三级标题
 #### 四级标题
 ##### 五级标题
