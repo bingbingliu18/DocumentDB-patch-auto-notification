@@ -44,6 +44,18 @@
 <img width="422" alt="image" src="https://user-images.githubusercontent.com/50776512/217127664-effd86cb-2d86-44a7-8914-57159a5715e1.png">
 
 3. **Confirm subscription in the email：**
+
+<img width="422" alt="image" src="https://user-images.githubusercontent.com/50776512/217128118-1e570ab8-5310-42ca-8130-21a07a4c30aa.png">
+
+## Create Lambda
+**Lambda Configuration：**
+
+**Lambda name:** 
+**query_docdb_maintenance**
+
+**Lambda role:** 
+**lambda-query-maintenance**
+
 ### 三级标题
 #### 四级标题
 ##### 五级标题
