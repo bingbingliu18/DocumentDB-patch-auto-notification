@@ -1,7 +1,7 @@
 import boto3
 import json
 
-notification = "This is notification for DocumentDB patch \n"
+notification = "This is notification for Aurora and DocumentDB patch \n"
 
 def query_docdb():
     global notification
@@ -18,7 +18,7 @@ def query_docdb():
                 if mw_type != 'Bug Fixes':
                     num = num - 1
                     continue
-                temp_string = "Region: " + REGION['RegionName'] +  " has docDB cluster needed to be upgrade.\n"
+                temp_string = "Region: " + REGION['RegionName'] +  " has Aurora or docDB cluster needed to be upgrade.\n"
                 notification += temp_string
                 temp_string = "The Cluster has pending maintenance action: " + inst['ResourceIdentifier'] + "\n"
                 notification += temp_string
